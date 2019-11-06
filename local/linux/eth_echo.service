@@ -1,0 +1,14 @@
+[Unit]
+Description=Ethernet Echo Server
+After=network.target
+ 
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment="LD_LIBRARY_PATH=/opt/eth_echo"
+WorkingDirectory=/opt/eth_echo
+ExecStart=/opt/eth_echo/lua5.4 echo_server.lua
+ExecStop=/opt/eth_echo/lua5.4 echo_server.lua -o
+ 
+[Install]
+WantedBy=multi-user.target
